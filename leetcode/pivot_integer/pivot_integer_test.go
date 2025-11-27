@@ -2,20 +2,26 @@ package pivot
 
 import "testing"
 
-type Pivot struct {
+type testCase struct {
 	n     int
 	pivot int
-	got   int
 }
 
 func TestPivotInteger(t *testing.T) {
-	cases := []Pivot{
-		{n: 8, pivot: 6, got: pivotInteger(8)},
-		{n: 1, pivot: 1, got: pivotInteger(1)},
-		{n: 4, pivot: -1, got: pivotInteger(4)},
+	testCases := []testCase{
+		{n: 8, pivot: 6},
+		{n: 1, pivot: 1},
+		{n: 4, pivot: -1},
 	}
 
-	for i,case := range cases {
-		
+	for _, tc := range testCases {
+		t.Run("The pivot", func(t *testing.T) {
+			n := tc.n
+			got := pivotInteger(n)
+			expected := tc.pivot
+			if tc.pivot != pivotInteger(tc.n) {
+				t.Errorf("for n=%d expected: %d  got: %d\n", n, expected, got)
+			}
+		})
 	}
 }

@@ -12,13 +12,13 @@ func isPalindrome(x int) bool {
 
 	var str string = strconv.Itoa(x)
 	var rev []string
-	var isCorrect = false
+	isCorrect := false
 
-	for i := len(str); i >= 0; i-- {
-		rev = append(rev, strings.Split(str, " ")[i])
+	for i := len(str) - 1; i >= 0; i-- {
+		rev = append(rev, strings.Split(str, "")[i])
 	}
 
-	if strings.Join(rev, " ") == str {
+	if strings.Join(rev, "") == str {
 		isCorrect = true
 	}
 

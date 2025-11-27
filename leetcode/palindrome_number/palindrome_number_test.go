@@ -1,6 +1,8 @@
 package palindrome
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestIsPalindrome(t *testing.T) {
 	type testCase struct {
@@ -44,8 +46,9 @@ func TestIsPalindrome(t *testing.T) {
 
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-
+			if isPalindrome(tc.input) != tc.expected {
+				t.Errorf("input : %d", tc.input)
+			}
 		})
 	}
-
 }
