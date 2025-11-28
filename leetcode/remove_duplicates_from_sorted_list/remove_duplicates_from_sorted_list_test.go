@@ -1,4 +1,4 @@
-package removeduplicatesfromsortedlist
+package removeDuplicatesFromSortedList
 
 import "testing"
 

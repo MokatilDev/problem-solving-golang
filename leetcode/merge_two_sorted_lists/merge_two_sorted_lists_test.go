@@ -1,12 +1,14 @@
-package mergetwosortedlists
+package mergeTwoSortedLists
 
 import (
-	"fmt"
 	"testing"
+
+	"github.com/MokatilDev/Problem-Solving-Lab/leetcode/utils"
 )
 
 func TestMergeTwoLists(t *testing.T) {
 	type testCase struct {
+		name     string
 		input1   []int
 		input2   []int
 		expected []int
@@ -14,67 +16,36 @@ func TestMergeTwoLists(t *testing.T) {
 
 	tests := []testCase{
 		{
+			name:     "Standard Case",
 			input1:   []int{1, 2, 4},
 			input2:   []int{1, 3, 4},
 			expected: []int{1, 1, 2, 3, 4, 4},
 		},
 		{
-			input1:   []int{1, 2, 4},
-			input2:   []int{1, 3, 4},
-			expected: []int{1, 1, 2, 3, 4, 4},
+			name:     "Empty Lists",
+			input1:   []int{},
+			input2:   []int{},
+			expected: []int{},
 		},
 		{
-			input1:   []int{1, 2, 4},
-			input2:   []int{1, 3, 4},
-			expected: []int{1, 1, 2, 3, 4, 4},
+			name:     "One Empty List",
+			input1:   []int{},
+			input2:   []int{0},
+			expected: []int{0},
 		},
 	}
 
 	for _, tc := range tests {
-		t.Run("linked list", func(t *testing.T) {
-			input1 := tc.input1
-			input2 := tc.input2
-			list1 := buildLinkList(input1)
-			list2 := buildLinkList(input2)
-			expected := buildLinkList(tc.expected)
+		t.Run(tc.name, func(t *testing.T) {
+			list1 := utils.BuildLinkList(tc.input1)
+			list2 := utils.BuildLinkList(tc.input2)
 
-			if !isEqaul(expected, mergeTwoLists(list1, list2)) {
+			expected := utils.BuildLinkList(tc.expected)
+			res := mergeTwoLists(list1, list2)
+
+			if !utils.IsEqaul(expected, res) {
 				t.Error("Not Passed check the code")
 			}
 		})
 	}
-}
-
-func buildLinkList(list []int) *ListNode {
-	dummy := &ListNode{}
-	current := dummy
-
-	for _, val := range list {
-		current.Next = &ListNode{Val: val}
-		current = current.Next
-	}
-
-	return dummy.Next
-}
-
-func isEqaul(list1, list2 *ListNode) bool {
-	for list1.Next != nil && list2.Next != nil {
-		if list1.Val != list2.Val {
-			return false
-		}
-		list1 = list1.Next
-		list2 = list2.Next
-	}
-
-	return list1 == nil && list2 == nil
-}
-
-func printList(list *ListNode) []int {
-	var res []int
-	current := list
-	for current != nil {
-		res = append(res, current.Val)
-		current = current.Next
-	}
-	return res
 }

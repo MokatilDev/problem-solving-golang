@@ -1,11 +1,8 @@
-package removeduplicatesfromsortedlist
+package removeDuplicatesFromSortedList
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import "github.com/MokatilDev/Problem-Solving-Lab/leetcode/utils"
 
-func deleteDuplicates(head *ListNode) *ListNode {
+func deleteDuplicates(head *utils.ListNode) *utils.ListNode {
 	current := head
 
 	for current != nil && current.Next != nil {

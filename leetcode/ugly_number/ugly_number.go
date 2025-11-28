@@ -1,4 +1,4 @@
-package uglynumber
+package uglyNumber
 
 func isUgly(n int) bool {
 	if n <= 0 {
