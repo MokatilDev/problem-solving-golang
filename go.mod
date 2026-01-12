@@ -1,3 +1,3 @@
-module github.com/MokatilDev/Problem-Solving-Lab
+module github.com/MokatilDev/problem-solving-golang
 
 go 1.25.4
