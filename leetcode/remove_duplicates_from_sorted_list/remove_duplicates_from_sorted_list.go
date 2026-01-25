@@ -1,6 +1,6 @@
 package removeDuplicatesFromSortedList
 
-import "github.com/MokatilDev/Problem-Solving-Lab/leetcode/utils"
+import "github.com/MokatilDev/problem-solving-golang/leetcode/utils"
 
 func deleteDuplicates(head *utils.ListNode) *utils.ListNode {
 	current := head
