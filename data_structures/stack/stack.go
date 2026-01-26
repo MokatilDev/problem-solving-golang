@@ -22,7 +22,7 @@ func (s *Stack) Pop() {
 }
 
 func (s *Stack) IsEmpty() bool {
-	return s.Len() != 0
+	return s.Len() == 0
 }
 
 func (s *Stack) Top() (int, error) {
