@@ -1,11 +1,12 @@
 package mergeTwoSortedLists
 
-import (
-	"github.com/MokatilDev/Problem-Solving-Lab/leetcode/utils"
-)
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
-func mergeTwoLists(list1 *utils.ListNode, list2 *utils.ListNode) *utils.ListNode {
-	list := &utils.ListNode{}
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+	list := &ListNode{}
 	current := list
 
 	for list1 != nil && list2 != nil {
