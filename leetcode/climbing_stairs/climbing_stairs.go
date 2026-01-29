@@ -9,7 +9,7 @@ func climbStairs(n int) int {
 	step2 := 2
 	current := 0
 
-	for i := 3; i <= 3; i++ {
+	for i := 3; i <= n; i++ {
 		current = step1 + step2
 
 		step1 = step2

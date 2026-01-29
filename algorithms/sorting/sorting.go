@@ -18,12 +18,12 @@ func insertionSort(arr *[]int) {
 	nums := *arr
 	for i := 1; i <= len(nums)-1; i++ {
 		j := i - 1
-		temp := nums[i]
-		for j >= 0 && nums[j] > temp {
+		for j >= 0 && nums[j+1] < nums[j] {
+			temp := nums[j+1]
 			nums[j+1] = nums[j]
-			j = j - 1
+			nums[j] = temp
+			j -= 1
 		}
-		nums[j+1] = temp
 	}
 }
 
