@@ -1,23 +1,36 @@
 package search_a_2d_matrix
 
 func searchMatrix(matrix [][]int, target int) bool {
-	arr := make([]int, len(matrix[0]))
-	for i := 0; i < len(matrix); i++ {
-		if matrix[i][len(matrix[i])-1] < target {
-			continue
-		}
-
-		arr = append(arr, matrix[i]...)
+	if len(matrix) == 0 || len(matrix[0]) == 0 {
+		return false
 	}
 
-	l, r := 0, len(arr)-1
+	ROWS, COLS := len(matrix), len(matrix[0])
 
+	top, bot := 0, ROWS-1
+	for top <= bot {
+		row := (top + bot) / 2
+		if target > matrix[row][COLS-1] {
+			top = row + 1
+		} else if target < matrix[row][0] {
+			bot = row - 1
+		} else {
+			break
+		}
+	}
+
+	if top > bot {
+		return false
+	}
+
+	row := (top + bot) / 2
+	l, r := 0, COLS-1
 	for l <= r {
-		mid := (l + r) / 2
-		if arr[mid] < target {
-			l = mid + 1
-		} else if target < arr[mid] {
-			r = mid - 1
+		m := (l + r) / 2
+		if target > matrix[row][m] {
+			l = m + 1
+		} else if target < matrix[row][m] {
+			r = m - 1
 		} else {
 			return true
 		}
