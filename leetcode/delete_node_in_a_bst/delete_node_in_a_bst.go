@@ -7,25 +7,35 @@ type TreeNode struct {
 }
 
 func deleteNode(root *TreeNode, key int) *TreeNode {
-	var prev *TreeNode
-	current := root
-	prev = nil
+	if root == nil {
+		return nil
+	}
 
-	for current != nil {
-		if current.Val < key {
-			prev = current
-			current = current.Right
-		} else if current.Val > key {
-			prev = current
-			current = current.Right
+	if key < root.Val {
+		root.Left = deleteNode(root.Left, key)
+	} else if key > root.Val {
+		root.Right = deleteNode(root.Right, key)
+	} else {
+		if root.Left == nil {
+			return root.Right
+		} else if root.Right == nil {
+			return root.Left
 		} else {
-			break
+			minNode := minValueNode(root.Right)
+			root.Val = minNode.Val
+			root.Right = deleteNode(root.Right, minNode.Val)
 		}
 	}
 
-	if prev != nil {
-		prev.Right = current.Right
+	return root
+}
+
+func minValueNode(root *TreeNode) *TreeNode {
+	current := root
+
+	for current != nil && current.Left != nil {
+		current = current.Left
 	}
 
-	return root
+	return current
 }
