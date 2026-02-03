@@ -9,7 +9,7 @@ type TreeNode struct {
 }
 
 func buildTree(preorder []int, inorder []int) *TreeNode {
-	if preorder == nil || inorder == nil {
+	if len(preorder) == 0 || len(inorder) == 0 {
 		return nil
 	}
 

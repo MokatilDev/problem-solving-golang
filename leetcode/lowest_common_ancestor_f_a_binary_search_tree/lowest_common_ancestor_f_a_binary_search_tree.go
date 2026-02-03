@@ -7,6 +7,10 @@ type TreeNode struct {
 }
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
 	current := root
 
 	for current != nil {
