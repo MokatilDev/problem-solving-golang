@@ -12,8 +12,8 @@ func isValidSudoku(board [][]byte) bool {
 			char := board[i][j]
 
 			if char != '.' {
-				row_key := "row" + strconv.Itoa(i)
-				colum_key := "colum" + strconv.Itoa(j)
+				row_key := "row" + strconv.Itoa(i) + string(char)
+				colum_key := "colum" + strconv.Itoa(j) + string(char)
 				box_key := "box" + strconv.Itoa(i/3) + strconv.Itoa(j/3) + string(char)
 
 				if exist[row_key] || exist[colum_key] || exist[box_key] {
