@@ -1,42 +1,49 @@
 package Kth_largest_element_in_an_array
 
+import (
+	"container/heap"
+)
+
+type MinHeap []int
+
+func (h MinHeap) Len() int {
+	return len(h)
+}
+
+func (h MinHeap) Less(i, j int) bool {
+	return h[i] < h[j]
+}
+
+func (h MinHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *MinHeap) Push(x any) {
+	*h = append(*h, x.(int))
+}
+
+func (h *MinHeap) Pop() any {
+	values := *h
+	n := len(values)
+
+	x := values[n-1]
+	*h = values[:n-1]
+
+	return x
+}
+
 func findKthLargest(nums []int, k int) int {
-	return mergeSort(nums)[len(nums)-k]
-}
+	values := make(MinHeap, k)
+	copy(values, nums[:k])
 
-func mergeSort(nums []int) []int {
-	if len(nums) < 2 {
-		return nums
-	}
+	heap.Init(&values)
 
-	first := mergeSort(nums[:len(nums)/2])
-	second := mergeSort(nums[len(nums)/2:])
-
-	return merge(first, second)
-}
-
-func merge(a, b []int) []int {
-	arr := make([]int, 0, len(a)+len(b))
-	i := 0
-	j := 0
-
-	for i < len(a) && j < len(b) {
-		if a[i] < b[j] {
-			arr = append(arr, a[i])
-			i++
-		} else {
-			arr = append(arr, b[j])
-			j++
+	for _, num := range nums[k:] {
+		if num > values[0] {
+			heap.Pop(&values)
+			heap.Push(&values, num)
 		}
 	}
 
-	for ; i < len(a); i++ {
-		arr = append(arr, a[i])
-	}
-
-	for ; j < len(b); j++ {
-		arr = append(arr, b[j])
-	}
-
-	return arr
+	return values[0]
 }
